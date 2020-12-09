@@ -18,3 +18,7 @@ Afterwards, it parses the existing index.html file and injects a new message in 
 This lambda function is triggered from DynamoDB after changes happen to the data inside the table.<br/>
 Once the message from the request has been INSERT-ed, lambda grabs the inserted message and passes it <br/>
 on to the script on the EC2 instance using SSM . 
+
+## Changes to the index.html file
+
+Since nginx is serving the index.html file we can view the html file on this address: http://3.126.116.24/ <br/>
