@@ -1,5 +1,4 @@
 
-import time
 import json
 import boto3
 
@@ -10,14 +9,11 @@ def process_dynamodb_response(response):
     for record in response["Records"]:
         if "INSERT" in record["eventName"]:
             message = record["dynamodb"]["NewImage"]["message"]["S"]
-    print(message)
     return message
 
 def get_active_instance(describe):
     for reservation in describe["Reservations"]:
         for instance in reservation["Instances"]:
-            print(instance["InstanceId"])
-            print(instance["State"]["Name"])
             if "running" in instance["State"]["Name"]:
                 return instance["InstanceId"]
                 
