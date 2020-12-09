@@ -1,7 +1,7 @@
 
 import json
 import boto3
-
+import time
 
 def process_dynamodb_response(response):
     #We can see the response from dynamoDB in test events
