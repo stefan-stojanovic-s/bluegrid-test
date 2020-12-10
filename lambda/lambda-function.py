@@ -36,7 +36,7 @@ def process_dynamodb_response(response):
     message = None
     for record in response["Records"]:
         if "INSERT" in record["eventName"]:
-            message = record["dynamodb"]["NewImage"]["message"]["S"]
+            message = record["dynamodb"]["NewImage"]["body"]["S"]
     return message
 
 def get_active_instance(describe):
