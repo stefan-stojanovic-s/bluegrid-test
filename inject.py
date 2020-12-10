@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import json
 import sys
 
 def inject_li_tag(message):
@@ -16,6 +17,16 @@ def inject_li_tag(message):
         f.writelines(str(soup))
 
 if __name__ == "__main__" :
-    if len(sys.argv) > 1:
-        message = sys.argv[1]
-        inject_li_tag(message)
+    try:
+        if len(sys.argv) > 1:
+            message = sys.argv[1]
+            inject_li_tag(message)
+            print(json.dumps({
+                "subject" : "REPORT - Message injected SUCCESS",
+                "message" : message,
+            }))
+    except:
+        print(json.dumps({
+                "subject" : "REPORT - Message injected FAILED",
+                "message" : None,
+            }))
