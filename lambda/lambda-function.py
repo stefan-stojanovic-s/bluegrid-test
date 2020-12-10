@@ -32,8 +32,7 @@ def lambda_handler(event, context):
         instance_id = get_active_instance(describe_instances)
         print(instance_id)
         
-        
-        #we send argument(message) in python execute command so it gets injected to an html file 
+        #we send argument => message in python execute command so it gets injected to an html file 
         #via python script on EC2 instance
         #https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.send_command
         response = ssm.send_command(
@@ -43,15 +42,19 @@ def lambda_handler(event, context):
                                         f"python3 inject.py '{message}'"]}  
                 )
     
-        command_id = response['Command']['CommandId']
-        #waiting for command to finish on ssm, there is also waiter boto3 methods for this
-        time.sleep(4)
-        
-        #https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.get_command_invocation        
-        output = ssm.get_command_invocation(
-              CommandId=command_id,
-              InstanceId=instance_id)
     
-        print(output)
+        #the chunk of code bellow is redundant for this use case
+        #we might use it if we want to handle notiications for message success usins SES
+        
+        # command_id = response['Command']['CommandId']
+        # #waiting for command to finish on ssm, there is also waiter boto3 methods for this
+        # time.sleep(4)
+        
+        # #https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ssm.html#SSM.Client.get_command_invocation        
+        # output = ssm.get_command_invocation(
+        #       CommandId=command_id,
+        #       InstanceId=instance_id)
+    
+        # print(output)
         
 
