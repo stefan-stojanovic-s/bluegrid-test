@@ -1,6 +1,7 @@
 # BlueGrid Test
 
 Using a combination of AWS services we are importing request payload from an API to DynamoDB after which Dynamo triggers a lambda function that, using AWS Session Manager, connects to an EC2 instance and appends a message to index.html file .
+The latest commit enables the lambda function to send an email after message was injected using Amazon SES .
 
 ## Branches
 
